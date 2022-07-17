@@ -1,0 +1,38 @@
+.message {
+  display: flex;
+  padding: 13px 14px 12px 13px;
+}
+
+.message__photo {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.message__image {
+  width: 100%;
+}
+
+.message__text {
+  margin: 0 10px 0 13px;
+  padding: 9px 10px 8px 8px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 100%;
+  font-size: 16px;
+  line-height: 18px;
+  word-spacing: -1px;
+}
+
+.message__second {
+  flex-direction: row-reverse;
+  background-color: #d3d7d8;
+}
+
+.message_second .message__text {
+  order: -1;
+}
