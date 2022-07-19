@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { textAreaMessage } from '../../Storage/Action';
 
+import PropTypes from 'prop-types';
+
 import styles from './index.m.css';
 
 const Footer = ({ onBtnSubmit, user }) => {
@@ -28,6 +30,11 @@ const Footer = ({ onBtnSubmit, user }) => {
       </div>
     </footer>
   );
+};
+
+Footer.propTypes = {
+  onBtnSubmit: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
 };
 
 export default Footer;

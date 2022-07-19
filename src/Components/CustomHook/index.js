@@ -7,7 +7,6 @@ export const useReduxActions = () => {
   const user = useSelector((state) => state.user);
   const message = useSelector((state) => state.message);
   const messages = useSelector((state) => state.messages);
-
   // // Достаю messages для параметра в Эффект, чтобы скролилось в двух, и больше чатах к последнему сообщению во время отправки;
 
   const ref = useRef(null);

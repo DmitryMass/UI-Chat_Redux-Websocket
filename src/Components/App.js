@@ -7,7 +7,6 @@ import {
   newUser,
   setAllMessagesInfo,
   textAreaMessage,
-  wSocket,
 } from '../Storage/Action';
 import { useReduxActions } from './CustomHook';
 
@@ -15,7 +14,7 @@ const URL = 'ws://localhost:8080';
 
 const App = () => {
   const [ws, setWs] = useState(new WebSocket(URL));
-  // ws не в редаксе, тк как у меня не работает ОНопен. но работает Дисконект
+  // если ws в редаксе, не работает ОНопен.
   const { user, message, messages, ref, handleClick, dispatch } =
     useReduxActions();
 

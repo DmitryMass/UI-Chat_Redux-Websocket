@@ -1,6 +1,6 @@
 .main {
   height: 300px;
-  overflow: auto;
+  overflow-y: overlay;
 }
 .message {
   display: flex;
@@ -27,6 +27,12 @@
   font-size: 16px;
   line-height: 18px;
   word-spacing: -1px;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .message__second {
