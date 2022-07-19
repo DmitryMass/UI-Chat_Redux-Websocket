@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 
 import styles from './index.m.css';
 
-const Footer = ({ onBtnSubmit, user }) => {
+const Footer = ({ onFormSubmit, user }) => {
   const dispatch = useDispatch();
   const message = useSelector((state) => state.message);
 
   return (
     <footer className={styles.footer}>
-      <form onSubmit={onBtnSubmit}>
+      <form onSubmit={onFormSubmit}>
         <div className={styles.footer__textBox}>
           <input
             type="textarea"
@@ -36,7 +36,7 @@ const Footer = ({ onBtnSubmit, user }) => {
 };
 
 Footer.propTypes = {
-  onBtnSubmit: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   user: PropTypes.string.isRequired,
 };
 

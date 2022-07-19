@@ -45,7 +45,7 @@ const App = () => {
     dispatch(setAllMessagesInfo(message));
   };
 
-  const onBtnSubmit = (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
     if (message.trim()) {
       submitMessage(user, message);
@@ -67,7 +67,7 @@ const App = () => {
         <div className="chat">
           <Header />
           <Main scrolls={ref} />
-          <Footer onBtnSubmit={onBtnSubmit} user={user} />
+          <Footer onFormSubmit={onFormSubmit} user={user} />
         </div>
       </div>
     </div>
