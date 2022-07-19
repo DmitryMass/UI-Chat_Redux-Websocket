@@ -12,22 +12,25 @@ const Footer = ({ onBtnSubmit, user }) => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footer__textBox}>
-        <textarea
-          value={message}
-          onChange={(e) => dispatch(textAreaMessage(e.target.value))}
-          className={styles.footer__textarea}
-        />
-      </div>
-      <div className={styles.footer__plate}>
-        <button
-          disabled={user ? false : true}
-          onClick={onBtnSubmit}
-          className={styles.footer__btn}
-        >
-          Send message
-        </button>
-      </div>
+      <form onSubmit={onBtnSubmit}>
+        <div className={styles.footer__textBox}>
+          <input
+            type="textarea"
+            value={message}
+            onChange={(e) => dispatch(textAreaMessage(e.target.value))}
+            className={styles.footer__textarea}
+          />
+        </div>
+        <div className={styles.footer__plate}>
+          <button
+            type="submit"
+            disabled={user ? false : true}
+            className={styles.footer__btn}
+          >
+            Send message
+          </button>
+        </div>
+      </form>
     </footer>
   );
 };

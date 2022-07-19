@@ -9,3 +9,6 @@
 
 6. Для запуска чата(сайта) npm run webpack;
 7. Для запуска сервера(WebSocket) npm run nodemon;
+
+Из макета, изменен textarea на input type=textarea / для
+отправки сообщения через Enter, и фокусе курсора на поле.

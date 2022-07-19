@@ -9,7 +9,6 @@ const secondUser = 'https://randomuser.me/api/portraits/lego/2.jpg';
 
 const Message = ({ item, message, scrolls }) => {
   const newUser = useSelector((state) => state.newUser);
-
   const checker = newUser.find((user) => user === item) ? true : false;
 
   return (
