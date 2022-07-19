@@ -1,16 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from '../index.m.css';
 
-// const SECOND_USER_AVATAR = 'https://randomuser.me/api/portraits/lego/2.jpg';
+const firstUser = 'https://randomuser.me/api/portraits/lego/1.jpg';
+const secondUser = 'https://randomuser.me/api/portraits/lego/2.jpg';
 
-const Message = ({ item, message }) => {
+const Message = ({ item, message, scrolls }) => {
+  const newUser = useSelector((state) => state.newUser);
+
+  const checker = newUser.find((user) => user === item) ? true : false;
+
   return (
-    <div className={styles.message}>
-      <div className={styles.message__photo}>
-        <img className={styles.message__img} src={item} alt="user photo" />
+    <div className={checker ? styles.message__second : styles.message}>
+      <p className={styles.message__username}>{item}</p>
+      <div className={styles.message__name}>
+        <img src={checker ? secondUser : firstUser} alt="" />
       </div>
-      <div className={styles.message__text}>{message}</div>
+      <div ref={scrolls} className={styles.message__text}>
+        {message}
+      </div>
     </div>
   );
 };

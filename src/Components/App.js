@@ -1,69 +1,74 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { nanoid } from 'nanoid';
 import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
 import {
-  addMessages,
-  addUsers,
-  connectUser,
-  disconnectUser,
+  addUser,
+  newUser,
+  setAllMessagesInfo,
+  textAreaMessage,
+  wSocket,
 } from '../Storage/Action';
+import { useReduxActions } from './CustomHook';
 
 const URL = 'ws://localhost:8080';
 
 const App = () => {
-  const [user, setUser] = useState(
-    'https://randomuser.me/api/portraits/lego/1.jpg'
-  );
-  const [message, setMessage] = useState([]);
-  const [messages, setMessages] = useState([]);
   const [ws, setWs] = useState(new WebSocket(URL));
-
-  const submitMessage = (usr, msg) => {
-    const message = { user: usr, message: msg };
-    ws.send(JSON.stringify(message));
-    setMessages([...messages, message]);
-  };
+  // ws не в редаксе, тк как у меня не работает ОНопен. но работает Дисконект
+  const { user, message, messages, ref, handleClick, dispatch } =
+    useReduxActions();
 
   useEffect(() => {
-    ws.onopen = () => {
-      console.log('WebSocket Connected');
-    };
-    ws.binaryType = 'blob';
+    handleClick();
 
+    ws.onopen = () => {
+      console.log('Connected');
+      ws.binaryType = 'blob';
+    };
     ws.onmessage = (msg) => {
       const message = JSON.parse(msg.data);
-      setMessages([...messages, message]);
+      dispatch(newUser(message.user));
+      dispatch(setAllMessagesInfo(message));
     };
 
     return () => {
       ws.onclose = () => {
-        console.log('WebSocket Disconnected');
+        console.log('Disconnected');
         setWs(new WebSocket(URL));
       };
     };
   }, [ws.onmessage, ws.onopen, ws.onclose, messages]);
 
+  const submitMessage = (currentUser, currentMessage) => {
+    const message = { user: currentUser, message: currentMessage };
+    ws.send(JSON.stringify(message));
+    dispatch(setAllMessagesInfo(message));
+  };
+
   const onBtnSubmit = (e) => {
     e.preventDefault();
-    submitMessage(user, message);
-    setMessage([]);
+    if (message.trim()) {
+      submitMessage(user, message);
+      dispatch(textAreaMessage(''));
+    }
+    return false;
   };
 
   return (
     <div className="app">
       <div className="container container__wrapper">
+        <input
+          className="username__input"
+          placeholder="Write your name for Chatting"
+          type="text"
+          value={user}
+          onChange={(e) => dispatch(addUser(e.target.value))}
+        />
         <div className="chat">
           <Header />
-          <Main messages={messages} />
-          <Footer
-            message={message}
-            setMessage={setMessage}
-            onBtnSubmit={onBtnSubmit}
-          />
+          <Main scrolls={ref} />
+          <Footer onBtnSubmit={onBtnSubmit} user={user} />
         </div>
       </div>
     </div>

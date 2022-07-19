@@ -1,13 +1,22 @@
 import React from 'react';
-// import { nanoid } from 'nanoid';
-
+import { useSelector } from 'react-redux';
+import styles from './index.m.css';
 import Message from './Message';
 
-const Main = ({ messages }) => {
+const Main = ({ scrolls }) => {
+  const messages = useSelector((state) => state.messages);
+
   return (
-    <main className="main">
+    <main className={styles.main}>
       {messages.map((item, index) => {
-        return <Message key={index} item={item.user} message={item.message} />;
+        return (
+          <Message
+            scrolls={scrolls}
+            key={index}
+            item={item.user}
+            message={item.message}
+          />
+        );
       })}
     </main>
   );

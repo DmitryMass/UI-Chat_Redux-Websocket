@@ -1,9 +1,14 @@
+.main {
+  height: 300px;
+  overflow: auto;
+}
 .message {
   display: flex;
+  flex-direction: row-reverse;
   padding: 13px 14px 12px 13px;
 }
 
-.message__photo {
+.message__name {
   width: 90px;
   height: 90px;
   overflow: hidden;
@@ -11,10 +16,6 @@
   border-radius: 50%;
   display: flex;
   flex-shrink: 0;
-}
-
-.message__image {
-  width: 100%;
 }
 
 .message__text {
@@ -29,10 +30,15 @@
 }
 
 .message__second {
-  flex-direction: row-reverse;
+  display: flex;
+  padding: 13px 14px 12px 13px;
   background-color: #d3d7d8;
 }
 
 .message_second .message__text {
   order: -1;
+}
+
+.message__username {
+  font-size: 14px;
 }

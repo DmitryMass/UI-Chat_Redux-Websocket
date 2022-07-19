@@ -9,8 +9,9 @@
 .container__wrapper {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .chat {
   background: #dde1e2;
@@ -21,4 +22,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.username__input {
+  width: 30%;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 5px;
 }
